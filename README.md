@@ -1,8 +1,8 @@
-#MBTA Route Tool
+# MBTA Route Tool
 
 MBTA route tool is a command-line utility for various route lookups.
  
-#Setup
+# Setup
  
 Requirements:
 ```
@@ -28,8 +28,6 @@ Requirements:
  
 # How to use
  
- 
- 
 1. List of route long names for light rail" type=0 or "heavy rail" type=1 routes (subway routes)
     ```
     python3 mbta.py 1
@@ -52,8 +50,9 @@ The stop names must match be exact match to MBTA's API.
     python3 mbta.py 3 --start Ashmont --end Arlington
     ```
  
- 
- 
+# Development
+
+Run `python3 -m pytest.py` to test.
  
     
  
