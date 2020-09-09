@@ -110,10 +110,6 @@ def test_get_route_with_max_stops(all_routes, route_c):
     assert all_routes.get_route_with_max_stops().id == route_c.id
 
 
-def test_get_route_with_max_stops(all_routes, route_c):
-    assert all_routes.get_route_with_max_stops().id == route_c.id
-
-
 def test_get_route_with_min_stops(all_routes, route_a):
     assert all_routes.get_route_with_min_stops().id == route_a.id
 
