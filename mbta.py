@@ -27,10 +27,11 @@ def question_2_3(all_routes):
     print("Question 2-3 - All stops with multiple routes")
     # reduce intersection stops information to just stop name and associated routes
     intersection_stops = all_routes.intersection_stops
+    intersection_stops.sort(key=lambda s: s["name"]) # sort stops so output maintains order independent of API
 
     # get longest stop name length to prettify console output
     longest_stop_name_len = max([len(s["name"]) for s in intersection_stops])
-    for stop_result in all_routes.intersection_stops:
+    for stop_result in intersection_stops:
         stop_result["routes"].sort()  # sort routes so output maintains order independent of API
         print("Stop: {}  Routes: {}".format(
             stop_result["name"].ljust(longest_stop_name_len, ' '),
@@ -53,6 +54,14 @@ def question_3(all_routes, start_stop, end_stop):
 def main(args):
     all_routes = AllRoutes.from_api()
 
+    if args.question == 1 or args.question == 2:
+        if args.start is not None:
+            print("--start is only used when question=3")
+            return
+        elif args.end is not None:
+            print("--end is only used when question=3")
+            return
+
     if args.question == 1:
         question_1(all_routes)
     elif args.question == 2:
@@ -72,11 +81,10 @@ def parse_args():
     parser = argparse.ArgumentParser(
         formatter_class=RawTextHelpFormatter,
         description="""
-MBTA command line utility for the following:
+MBTA command-line utility for the following:
 Input: question=1
 Console Output:
-List of route long names where route is
-"light rail" type=0 or "heavy rail" type=1 (subway routes)
+List of route long names for light rail" type=0 or "heavy rail" type=1 routes (subway routes)
 
 Input: question=2
 Console Output: 

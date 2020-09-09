@@ -40,7 +40,7 @@ class AllRoutes:
                     srm[stop.id]["routes_count"] = 0
                 srm[stop.id]["routes"].append(route.id)
                 srm[stop.id]["routes_count"] += 1
-                if srm[stop.id]["routes_count"] >= 2:
+                if srm[stop.id]["routes_count"] == 2:  # only append first time routes exceeds threshold
                     intersection_stops.append(srm[stop.id])
         return intersection_stops
 
